@@ -13,6 +13,10 @@ func main() {
 	for true {
 		fmt.Fprint(os.Stdout, "$ ")
 		command, _ := bufio.NewReader(os.Stdin).ReadString('\n')
-		fmt.Println(command[:len(command)-1] + ": command not found")
+		cleanedCommand := command[:len(command)-1]
+		if cleanedCommand == "exit 0" {
+			os.Exit(0)
+		}
+		fmt.Println(cleanedCommand + ": command not found")
 	}
 }
